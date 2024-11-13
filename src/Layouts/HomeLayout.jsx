@@ -1,6 +1,8 @@
 
 import Header from '../Componentes/Header';
 import LeftSidebar from '../Componentes/layout-components/LeftSidebar';
+
+import RightSidebar from '../Componentes/layout-components/RightSidebar';
 import LeatestNews from '../Componentes/LeatestNews';
 import Navbar from '../Componentes/Navbar';
 
@@ -30,7 +32,7 @@ const HomeLayout = () => {
                     <h1>main section</h1>
                 </section>
                 <aside className='col-span-3'>
-                    <h1>right side bar</h1>
+                    <RightSidebar></RightSidebar>
                 </aside>
             </main>
         </div>

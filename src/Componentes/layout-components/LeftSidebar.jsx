@@ -12,7 +12,7 @@ const LeftSidebar = () => {
     return (
         <div>
             <h1 className="text-lg font-semibold ">All Category({categories.length})</h1>
-            <div className="flex flex-col ">
+            <div className="flex flex-col w-fit">
                 {
                     categories.map(category => <button
                         className="btn my-3"
