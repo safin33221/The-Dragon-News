@@ -1,10 +1,16 @@
 
 import Header from '../Componentes/Header';
+import LeatestNews from '../Componentes/LeatestNews';
 
 const HomeLayout = () => {
     return (
         <div>
-            <Header></Header>
+            <header>
+                <Header></Header>
+                <section>
+                    <LeatestNews></LeatestNews>
+                </section>
+            </header>
         </div>
     );
 };
