@@ -1,16 +1,38 @@
 
 import Header from '../Componentes/Header';
+import LeftSidebar from '../Componentes/layout-components/LeftSidebar';
 import LeatestNews from '../Componentes/LeatestNews';
+import Navbar from '../Componentes/Navbar';
 
 const HomeLayout = () => {
     return (
-        <div>
+        <div className='font-poppins'>
             <header>
                 <Header></Header>
-                <section className='w-10/12 mx-auto py-3'>
-                    <LeatestNews></LeatestNews>
-                </section>
             </header>
+
+
+            <section className='w-11/12 mx-auto py-3'>
+                <LeatestNews></LeatestNews>
+            </section>
+
+
+            <nav className='w-11/12 mx-auto py'>
+                <Navbar></Navbar>
+            </nav>
+            
+
+            <main className=' w-11/12 mx-auto grid grid-cols-12 gap-4'>
+                <aside className='col-span-3'>
+                   <LeftSidebar></LeftSidebar> 
+                </aside>
+                <section className='col-span-6'>
+                    <h1>main section</h1>
+                </section>
+                <aside className='col-span-3'>
+                    <h1>right side bar</h1>
+                </aside>
+            </main>
         </div>
     );
 };
