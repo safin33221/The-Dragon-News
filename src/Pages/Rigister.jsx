@@ -1,35 +1,63 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Rigister = () => {
+
+    const { createUser,setUser } = useContext(AuthContext)
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const form = new FormData(e.target)
+        const name = form.get('name')
+        const photo = form.get('photo')
+        const email = form.get('email')
+        const password = form.get('password')
+
+       
+
+        createUser(email,password)
+        .then(result => {
+            const user = result.user
+            setUser(user)
+        })
+        .catch((error) =>{
+            const errorCode = error.code
+            const errorMsg= error.message
+            console.log(errorMsg);
+        })
+
+    }
     return (
         <div className='  flex justify-center items-center min-h-screen'>
             <div class="card bg-white w-full max-w-lg shrink-0 p-10 rounded-none">
                 <h2 className='text-2xl font-semibold text-center'>Register Now</h2>
-                <form class="card-body">
+                <form onSubmit={handleSubmit} class="card-body">
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text font-semibold text-xl">Name</span>
                         </label>
-                        <input type="email" placeholder="Name" class="input input-bordered" required />
+                        <input name='name' type="text" placeholder="Name" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text font-semibold text-xl">Photo URL</span>
                         </label>
-                        <input type="email" placeholder="Photo URL" class="input input-bordered" required />
+                        <input name='photo' type="text" placeholder="Photo URL" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text font-semibold text-xl">Email</span>
                         </label>
-                        <input type="email" placeholder="email" class="input input-bordered" required />
+                        <input name='email' type="email" placeholder="email" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text text-xl font-semibold">Password</span>
                         </label>
-                        <input type="password" placeholder="password" class="input input-bordered" required />
+                        <input name='password' type="password" placeholder="password" class="input input-bordered" required />
 
                     </div>
                     <div class="form-control mt-6">
