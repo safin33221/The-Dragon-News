@@ -1,10 +1,6 @@
 export default {
   plugins: {
-    tailwindcss: {
-      fontFamily:{
-        poppins:["Poppins", "sans-serif"]
-      }
-    },
+    tailwindcss: {},
     autoprefixer: {},
   },
 }

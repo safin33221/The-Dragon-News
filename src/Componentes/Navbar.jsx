@@ -1,5 +1,5 @@
 
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import usericon from '../assets/user.png';
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
 
         <div className='flex justify-between items-center'>
             <div className=""></div>
-            <div className="link flex space-x-4">
+            <div className=" flex space-x-4">
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/career'>Career</NavLink>
                 <NavLink to='/abouts'>Abouts</NavLink>
@@ -17,7 +17,7 @@ const Navbar = () => {
                 <div>
                     <img src={usericon} alt="" />
                 </div>
-                <button className='btn btn-neutral rounded-lg '>Login</button>
+                <Link to='/auth/login' className='btn btn-neutral rounded-lg '>Login</Link>
             </div>
         </div>
 
