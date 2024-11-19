@@ -1,8 +1,9 @@
 
 import { FaShareAlt, FaStar, FaEye } from 'react-icons/fa';
 import { FaBookmark } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 const NewsCard = ({ news }) => {
-    const { title, author, rating, total_view, image_url, details } = news;
+    const { title, author, rating, total_view, image_url, details,_id } = news;
 
     return (
         <div className="max-w-md mx-auto my-6 p-4 shadow-lg rounded-lg bg-white border border-gray-200">
@@ -39,7 +40,7 @@ const NewsCard = ({ news }) => {
             </p>
 
             {/* Read More Button */}
-            <button className="text-red-500 font-semibold">Read More</button>
+            <Link to={`/newsDetails/${_id}`} className="text-red-500 font-semibold">Read More</Link>
 
             {/* Rating and Views */}
             <div className="flex justify-between items-center mt-4">

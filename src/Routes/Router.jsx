@@ -5,38 +5,45 @@ import CategoryNews from '../Pages/CategoryNews';
 import AuthLayout from '../Layouts/AuthLayout';
 import Login from '../Pages/Login';
 import Rigister from '../Pages/Rigister';
+import NewsDetails from '../Pages/NewsDetails';
+import PrivetsRouts from './PrivetsRouts';
 
-const Router =  createBrowserRouter([
+const Router = createBrowserRouter([
     {
-        path:'/',
-        element:<HomeLayout></HomeLayout>,
-        children:[
+        path: '/',
+        element: <HomeLayout></HomeLayout>,
+        children: [
             {
-                path:'',
-                element:<Navigate to={'/category/01'}></Navigate>
+                path: '',
+                element: <Navigate to={'/category/01'}></Navigate>
             },
             {
-                path:'/category/:id',
-                element:<CategoryNews></CategoryNews>,
-                loader:({params})=>fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`)
+                path: '/category/:id',
+                element: <CategoryNews></CategoryNews>,
+                loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`)
             }
         ]
     },
     {
-        path:'/news',
-        element:<h1>this is news page</h1>
+        path: '/newsDetails/:id',
+        element:
+            <PrivetsRouts>
+                <NewsDetails></NewsDetails>
+            </PrivetsRouts>,
+        loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
+
     },
     {
-        path:'/auth',
-        element:<AuthLayout></AuthLayout>,
-        children:[
+        path: '/auth',
+        element: <AuthLayout></AuthLayout>,
+        children: [
             {
-                path:'/auth/login',
-                element:<Login></Login>
+                path: '/auth/login',
+                element: <Login></Login>
             },
             {
-                path:'/auth/register',
-                element:<Rigister></Rigister>
+                path: '/auth/register',
+                element: <Rigister></Rigister>
             },
         ]
     },

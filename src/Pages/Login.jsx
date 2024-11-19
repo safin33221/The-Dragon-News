@@ -1,23 +1,28 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
-import { Result } from 'postcss';
+
 
 const Login = () => {
-    const {loginUser,setUser} = useContext(AuthContext)
-    const handleLogin =(e)=>{
+    const { loginUser, setUser } = useContext(AuthContext)
+    const [error, setError] = useState({})
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const handleLogin = (e) => {
         e.preventDefault()
         const form = new FormData(e.target)
         const email = form.get('email')
         const password = form.get('password')
-        loginUser(email,password)
-        .then(result=>{
-            const user = result.user
-            setUser(user)
-        })
-        .catch(error=>{
-            alert(error.code)
-        })
+        loginUser(email, password)
+            .then(result => {
+                const user = result.user
+                setUser(user)
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(err => {
+                setError({ ...error, login: err.code })
+            })
     }
     return (
         <div className='  flex justify-center items-center min-h-screen'>
@@ -38,6 +43,12 @@ const Login = () => {
                         <label class="label">
                             <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
                         </label>
+                        {
+                            error.login &&
+                            <label class="label text-red-500">
+                                {error.login}
+                            </label>
+                        }
                     </div>
                     <div class="form-control mt-6">
                         <button class="btn btn-neutral rounded-none ">Login</button>
